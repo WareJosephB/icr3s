@@ -10,7 +10,9 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "transferType")
 public class TransferType {
 
+	@XmlElement(name = "name")
 	private String type;
+	@XmlElement(name = "location")
 	private ArrayList<Location> locations;
 	
 	public String getType() {
@@ -24,17 +26,8 @@ public class TransferType {
 	public String getCallCentre() {
 		Location nextCallCentre = locations.stream().min(Comparator.comparing(Location::getWeightStepped))
 				.orElseThrow(NoSuchElementException::new);
-		nextCallCentre.step(getTotalWeighting());
+		nextCallCentre.step();
 		return nextCallCentre.toString();
 	}
-	
-	private int getTotalWeighting() {
-		int i = 0;
-		for (Location location : locations) {
-			i += location.getWeighting();
-		}
-		return Math.max(i, 1); //prevent div by 0
-	}
-
 
 }

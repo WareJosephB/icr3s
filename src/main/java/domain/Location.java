@@ -6,19 +6,23 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "location")
 public class Location {
 
-	@XmlElement(name = "name")
+	@XmlAttribute(name = "name")
 	private String locationName;
 	@XmlElement(name = "number")
 	private String phoneNumber;
 	@XmlElement(name = "weight")
 	private int weighting;
-	private int weightStepped = 0;
+	private float weightStepped;
+
+	public Location() {
+		this.weightStepped = 0;
+	}
 
 	public String toString() {
 		return this.locationName + ": " + this.phoneNumber;
 	}
 
-	public int getWeightStepped() {
+	public float getWeightStepped() {
 		return weightStepped;
 	}
 
@@ -34,8 +38,8 @@ public class Location {
 		this.weighting = weighting;
 	}
 
-	public void step(int totalWeighting) {
-		this.weightStepped += weighting/totalWeighting;
+	public void step() {
+		this.weightStepped += 1.0 / weighting;
 	}
 
 }

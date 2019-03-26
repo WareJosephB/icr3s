@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TransferLocations {
 
+	@XmlElement(name = "transferType")
 	private ArrayList<TransferType> transferTypes;
 
 	public List<TransferType> getTransferTypes() {
