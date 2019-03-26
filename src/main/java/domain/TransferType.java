@@ -12,7 +12,7 @@ public class TransferType {
 
 	private String type;
 	private ArrayList<Location> locations;
-
+	
 	public String getType() {
 		return type;
 	}
@@ -24,8 +24,17 @@ public class TransferType {
 	public String getCallCentre() {
 		Location nextCallCentre = locations.stream().min(Comparator.comparing(Location::getWeightStepped))
 				.orElseThrow(NoSuchElementException::new);
-		nextCallCentre.step();
+		nextCallCentre.step(getTotalWeighting());
 		return nextCallCentre.toString();
 	}
+	
+	private int getTotalWeighting() {
+		int i = 0;
+		for (Location location : locations) {
+			i += location.getWeighting();
+		}
+		return Math.max(i, 1); //prevent div by 0
+	}
+
 
 }

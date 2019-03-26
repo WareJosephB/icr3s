@@ -34,8 +34,8 @@ public class Location {
 		this.weighting = weighting;
 	}
 
-	public void step() {
-		this.weightStepped += weighting;
+	public void step(int totalWeighting) {
+		this.weightStepped += weighting/totalWeighting;
 	}
 
 }
