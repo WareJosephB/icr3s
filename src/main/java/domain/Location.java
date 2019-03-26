@@ -1,11 +1,18 @@
 package domain;
 
+import javax.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "location")
 public class Location {
 
+	@XmlElement(name = "name")
 	private String locationName;
+	@XmlElement(name = "number")
 	private String phoneNumber;
+	@XmlElement(name = "weight")
 	private int weighting;
-	private static int weightStepped = 0;
+	private int weightStepped = 0;
 
 	public String toString() {
 		return this.locationName + ": " + this.phoneNumber;
@@ -16,7 +23,7 @@ public class Location {
 	}
 
 	public void setWeightStepped(int weightStepped) {
-		Location.weightStepped = weightStepped;
+		this.weightStepped = weightStepped;
 	}
 
 	public int getWeighting() {
@@ -25,6 +32,10 @@ public class Location {
 
 	public void setWeighting(int weighting) {
 		this.weighting = weighting;
+	}
+
+	public void step() {
+		this.weightStepped += weighting;
 	}
 
 }

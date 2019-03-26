@@ -3,9 +3,10 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "transferLocations")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class TransferLocations {
 
 	private ArrayList<TransferType> transferTypes;
@@ -26,7 +27,7 @@ public class TransferLocations {
 		}
 		return "No centres found to deal with that request type.";
 	}
-	
+
 	public String toString() {
 		return this.getTransferTypes().get(0).getCallCentre();
 	}

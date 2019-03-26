@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 
+import javax.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "transferType")
 public class TransferType {
 
 	private String type;
@@ -20,7 +24,7 @@ public class TransferType {
 	public String getCallCentre() {
 		Location nextCallCentre = locations.stream().min(Comparator.comparing(Location::getWeightStepped))
 				.orElseThrow(NoSuchElementException::new);
-		nextCallCentre.setWeightStepped(nextCallCentre.getWeightStepped() + nextCallCentre.getWeighting());
+		nextCallCentre.step();
 		return nextCallCentre.toString();
 	}
 
